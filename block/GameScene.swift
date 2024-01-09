@@ -15,13 +15,16 @@ class GameScene: SKScene {
         self.asstNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: 0)
         
         if let asstNode = self.asstNode {
-            asstNode.fillColor = SKColor.white
+            asstNode.lineWidth = 2.5
+            asstNode.strokeColor = SKColor.white
+            asstNode.fillColor = UIColor(hex: "#0066FF")
+//            asstNode.fillColor = SKColor.white
             asstNode.physicsBody = SKPhysicsBody(rectangleOf: asstNode.frame.size)
             asstNode.physicsBody?.isDynamic = false
             self.addChild(asstNode)
         }
-        let w2 = self.size.width / 5
-        self.userNode = SKShapeNode.init(rectOf: CGSize.init(width: w2, height: w2), cornerRadius: w)
+        
+        self.userNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w)
         if let spinnyNode = self.userNode {
             spinnyNode.lineWidth = 2.5
             spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
