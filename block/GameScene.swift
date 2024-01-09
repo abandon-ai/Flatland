@@ -23,6 +23,8 @@ class GameScene: SKScene {
         
         if let asstNode = self.asstNode {
             asstNode.fillColor = SKColor.white
+            asstNode.physicsBody = SKPhysicsBody(rectangleOf: asstNode.frame.size)
+            asstNode.physicsBody?.isDynamic = false
             self.addChild(asstNode)
         }
         
@@ -36,8 +38,22 @@ class GameScene: SKScene {
         }
     }
     
+    func moveAsstNode(toPoint pos: CGPoint) {
+            // Calculate the distance and speed to move the asstNode
+            let asstNodeSpeed: CGFloat = 500 // points per second
+            if let asstNode = self.asstNode {
+                let distance = hypot(pos.x - asstNode.position.x, pos.y - asstNode.position.y)
+                let duration = TimeInterval(distance / asstNodeSpeed)
+                
+                // Move the asstNode to the new position
+                let moveAction = SKAction.move(to: pos, duration: duration)
+                asstNode.run(moveAction)
+            }
+        }
+    
     
     func touchDown(atPoint pos : CGPoint) {
+        moveAsstNode(toPoint: pos)
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             self.addChild(n)
@@ -45,6 +61,7 @@ class GameScene: SKScene {
     }
     
     func touchMoved(toPoint pos : CGPoint) {
+        moveAsstNode(toPoint: pos)
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             self.addChild(n)
@@ -52,6 +69,7 @@ class GameScene: SKScene {
     }
     
     func touchUp(atPoint pos : CGPoint) {
+        moveAsstNode(toPoint: pos)
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             self.addChild(n)
