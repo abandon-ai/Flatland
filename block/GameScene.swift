@@ -57,6 +57,7 @@ class GameScene: SKScene {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             self.addChild(n)
+            moveAsstNode(toPoint: pos)
         }
     }
     
@@ -64,14 +65,15 @@ class GameScene: SKScene {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             self.addChild(n)
+            moveAsstNode(toPoint: pos)
         }
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        moveAsstNode(toPoint: pos)
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             self.addChild(n)
+            moveAsstNode(toPoint: pos)
         }
     }
     
@@ -84,7 +86,7 @@ class GameScene: SKScene {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
             feedbackGenerator.prepare()
             feedbackGenerator.impactOccurred()
         
