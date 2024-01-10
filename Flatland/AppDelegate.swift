@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  block
-//
-//  Created by 丁涯 on 2024/1/9.
-//
-
 import UIKit
 
 @main

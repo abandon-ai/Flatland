@@ -1,10 +1,3 @@
-//
-//  GameViewController.swift
-//  block
-//
-//  Created by 丁涯 on 2024/1/9.
-//
-
 import UIKit
 import SpriteKit
 import GameplayKit
