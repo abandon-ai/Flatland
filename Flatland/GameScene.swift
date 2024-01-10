@@ -15,10 +15,7 @@ class GameScene: SKScene {
         self.asstNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: 0)
         
         if let asstNode = self.asstNode {
-            asstNode.lineWidth = 2.5
-            asstNode.strokeColor = SKColor.white
             asstNode.fillColor = UIColor(hex: "#0066FF")
-//            asstNode.fillColor = SKColor.white
             asstNode.physicsBody = SKPhysicsBody(rectangleOf: asstNode.frame.size)
             asstNode.physicsBody?.isDynamic = false
             self.addChild(asstNode)
@@ -50,6 +47,7 @@ class GameScene: SKScene {
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.userNode?.copy() as! SKShapeNode? {
             n.position = pos
+            n.strokeColor = SKColor.white
             self.addChild(n)
         }
     }
@@ -57,6 +55,7 @@ class GameScene: SKScene {
     func touchMoved(toPoint pos : CGPoint) {
         if let n = self.userNode?.copy() as! SKShapeNode? {
             n.position = pos
+            n.strokeColor = SKColor.white
             self.addChild(n)
         }
     }
@@ -64,6 +63,7 @@ class GameScene: SKScene {
     func touchUp(atPoint pos : CGPoint) {
         if let n = self.userNode?.copy() as! SKShapeNode? {
             n.position = pos
+            n.strokeColor = SKColor.white
             self.addChild(n)
         }
     }
