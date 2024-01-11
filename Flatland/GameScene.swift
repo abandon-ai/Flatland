@@ -10,11 +10,21 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         self.backgroundColor = SKColor.black
         
+        if let fogEmitter = SKEmitterNode(fileNamed: "Magic.sks") {
+            fogEmitter.position = CGPoint(x: frame.midX, y: frame.midY)
+            fogEmitter.particlePositionRange = CGVector(dx: frame.width, dy: frame.height)
+            fogEmitter.zPosition = -1
+            fogEmitter.particleBlendMode = .alpha
+            addChild(fogEmitter)
+        }
+        
         // Create shape node to use during mouse interaction
         let w = self.size.width / 8
         self.asstNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: 0)
         
         if let asstNode = self.asstNode {
+            asstNode.lineWidth = 5
+            asstNode.strokeColor = SKColor.white
             asstNode.fillColor = UIColor(hex: "#0066FF")
             asstNode.physicsBody = SKPhysicsBody(rectangleOf: asstNode.frame.size)
             asstNode.physicsBody?.isDynamic = false
