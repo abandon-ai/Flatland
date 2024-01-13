@@ -3,8 +3,8 @@ import GameplayKit
 import UIKit
 
 class GameScene: SKScene {
-    private var squareNode : SKSpriteNode?
-    private var circleNode : SKSpriteNode?
+    private var squareNode : SKSpriteNode!
+    private var circleNode : SKSpriteNode!
     
     override func didMove(to view: SKView) {
         // Background
@@ -123,48 +123,52 @@ class GameScene: SKScene {
         }
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.circleNode?.copy() as! SKNode? {
-            n.position = pos
-            self.addChild(n)
-        }
-        moveSquareNode(toPoint: pos)
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.circleNode?.copy() as! SKNode? {
-            n.position = pos
-            self.addChild(n)
-        }
-        moveSquareNode(toPoint: pos)
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.circleNode?.copy() as! SKNode? {
-            n.position = pos
-            self.addChild(n)
-        }
-        moveSquareNode(toPoint: pos)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        for touch in touches {
+            let location = touch.location(in: self)
+            if let n = self.circleNode?.copy() as! SKNode? {
+                n.position = location
+                self.addChild(n)
+            }
+            if squareNode.contains(location) {
+                let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+                    feedbackGenerator.prepare()
+                    feedbackGenerator.impactOccurred()
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        for touch in touches {
+            let location = touch.location(in: self)
+            if let n = self.circleNode?.copy() as! SKNode? {
+                n.position = location
+                self.addChild(n)
+            }
+            moveSquareNode(toPoint: location)
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-//            feedbackGenerator.prepare()
-//            feedbackGenerator.impactOccurred()
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+
+        for touch in touches {
+            let location = touch.location(in: self)
+            if let n = self.circleNode?.copy() as! SKNode? {
+                n.position = location
+                self.addChild(n)
+            }
+        }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        for touch in touches {
+            let location = touch.location(in: self)
+            if let n = self.circleNode?.copy() as! SKNode? {
+                n.position = location
+                self.addChild(n)
+            }
+            moveSquareNode(toPoint: location)
+        }
     }
     
     
