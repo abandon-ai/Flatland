@@ -29,7 +29,7 @@ class GameScene: SKScene {
     }
 
     private func createCircleNode() {
-        let circleStrokeNode = createBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 96, bloomIntensity: 2.0, bloomRadius: 10)
+        let circleStrokeNode = createBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 48, bloomIntensity: 2.0, bloomRadius: 10)
         circleNode = SKSpriteNode()
         circleNode.addChild(circleStrokeNode)
         circleNode.run(SKAction.sequence([
@@ -37,7 +37,7 @@ class GameScene: SKScene {
             SKAction.fadeOut(withDuration: 0.5),
             SKAction.removeFromParent()
         ]))
-        circleNode.alpha = 0.8
+        circleNode.alpha = 0.5
     }
 
     private func createSquareNode(size: CGSize, blurRadius: CGFloat, colors: [String], bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKSpriteNode {
