@@ -60,9 +60,18 @@ class GameScene: SKScene {
         borderNode.lineWidth = 4
         borderNode.fillColor = SKColor.clear
         
+        let glowEffectNode = SKEffectNode()
+
+        let bloomFilter = CIFilter(name: "CIBloom")!
+        bloomFilter.setValue(1.0, forKey: kCIInputIntensityKey)
+        bloomFilter.setValue(10.0, forKey: kCIInputRadiusKey)
+        glowEffectNode.filter = bloomFilter
+        glowEffectNode.shouldEnableEffects = true
+        glowEffectNode.addChild(borderNode)
+        
         self.squareNode = SKNode()
         self.squareNode?.addChild(squareBodyNode)
-        self.squareNode?.addChild(borderNode)
+        self.squareNode?.addChild(glowEffectNode)
         
         self.addChild(self.squareNode!)
     }
