@@ -36,42 +36,42 @@ class GameScene: SKScene {
                                               SKAction.removeFromParent()]))
         }
         
-        // squareNode
+        // squareBodyNode
+        let squareBodyNode = SKEffectNode()
+        squareBodyNode.shouldRasterize = true
+        squareBodyNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": 10.0])
+        
         let gradientLayer2 = CAGradientLayer()
         gradientLayer2.frame = CGRect(origin: .zero, size: CGSize(width: 96, height: 96))
         gradientLayer2.colors = [UIColor(hex: "#3D70E5").cgColor, UIColor(hex: "#CEFEEC").cgColor]
-        gradientLayer2.startPoint = CGPoint(x: 0.0, y: 0.5) // 左边开始
-        gradientLayer2.endPoint = CGPoint(x: 1.0, y: 0.5) // 右边结束
+        gradientLayer2.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer2.endPoint = CGPoint(x: 1.0, y: 0.5)
         
         UIGraphicsBeginImageContext(gradientLayer2.bounds.size)
         gradientLayer2.render(in: UIGraphicsGetCurrentContext()!)
         let gradientImage2 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        let texture = SKTexture(image: gradientImage2!)
-        let characterSprite = SKSpriteNode(texture: texture)
-        let squareBodyNode = SKEffectNode()
-        squareBodyNode.shouldRasterize = true
-        squareBodyNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": 20.0])
-        squareBodyNode.addChild(characterSprite)
+        let squareSprite = SKSpriteNode(texture: SKTexture(image: gradientImage2!))
+        squareBodyNode.addChild(squareSprite)
+        // squareStrokeNode
+        let squareStrokeNode = SKEffectNode()
         
+        let bloomFilter = CIFilter(name: "CIBloom")!
+        bloomFilter.setValue(1.0, forKey: kCIInputIntensityKey)
+        bloomFilter.setValue(10.0, forKey: kCIInputRadiusKey)
+        
+        squareStrokeNode.filter = bloomFilter
+        squareStrokeNode.shouldEnableEffects = true
         let borderNode = SKShapeNode(rectOf: CGSize(width: 96, height: 96))
         borderNode.strokeColor = SKColor.white
         borderNode.lineWidth = 4
         borderNode.fillColor = SKColor.clear
-        
-        let glowEffectNode = SKEffectNode()
-
-        let bloomFilter = CIFilter(name: "CIBloom")!
-        bloomFilter.setValue(1.0, forKey: kCIInputIntensityKey)
-        bloomFilter.setValue(10.0, forKey: kCIInputRadiusKey)
-        glowEffectNode.filter = bloomFilter
-        glowEffectNode.shouldEnableEffects = true
-        glowEffectNode.addChild(borderNode)
-        
+        squareStrokeNode.addChild(borderNode)
+        // squareNode
         self.squareNode = SKNode()
         self.squareNode?.addChild(squareBodyNode)
-        self.squareNode?.addChild(glowEffectNode)
+        self.squareNode?.addChild(squareStrokeNode)
         
         self.addChild(self.squareNode!)
     }
