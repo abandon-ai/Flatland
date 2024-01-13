@@ -17,7 +17,7 @@ class GameScene: SKScene {
         createCircleNode()
         
         // Square Node
-        squareNode = createSquareNode(size: CGSize(width: 96, height: 96), blurRadius: 10.0, colors: ["#3D70E5", "#CEFEEC"], bloomIntensity: 1.0, bloomRadius: 10.0)
+        squareNode = createSquareNode(size: CGSize(width: 96, height: 96), blurRadius: 10.0, colors: ["#3D70E5", "#CEFEEC"], bloomIntensity: 2.0, bloomRadius: 10.0)
         self.addChild(squareNode!)
     }
 
@@ -29,7 +29,7 @@ class GameScene: SKScene {
     }
 
     private func createCircleNode() {
-        let circleStrokeNode = createBloomStrokeNode(size: CGSize(width: 96, height: 96), radius: 96, bloomIntensity: 1.0, bloomRadius: 10)
+        let circleStrokeNode = createBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 96, bloomIntensity: 2.0, bloomRadius: 10)
         circleNode = SKSpriteNode()
         circleNode.addChild(circleStrokeNode)
         circleNode.run(SKAction.sequence([
@@ -37,12 +37,12 @@ class GameScene: SKScene {
             SKAction.fadeOut(withDuration: 0.5),
             SKAction.removeFromParent()
         ]))
-        circleNode.alpha = 0.2
+        circleNode.alpha = 0.8
     }
 
     private func createSquareNode(size: CGSize, blurRadius: CGFloat, colors: [String], bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKSpriteNode {
         let squareBodyNode = createSquareBodyNode(size: size, blurRadius: blurRadius, colors: colors)
-        let squareStrokeNode = createBloomStrokeNode(size: size, radius: 0, bloomIntensity: bloomIntensity, bloomRadius: bloomRadius)
+        let squareStrokeNode = createBloomStrokeNode(size: size, lineWidth: 4, radius: 0, bloomIntensity: bloomIntensity, bloomRadius: bloomRadius)
         
         let leftEye = SKShapeNode(rectOf: CGSize(width: 16, height: 16), cornerRadius: 16)
         let rightEye = SKShapeNode(rectOf: CGSize(width: 16, height: 16), cornerRadius: 16)
@@ -79,7 +79,7 @@ class GameScene: SKScene {
         return effectNode
     }
 
-    private func createBloomStrokeNode(size: CGSize, radius: CGFloat,bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKEffectNode {
+    private func createBloomStrokeNode(size: CGSize, lineWidth: CGFloat, radius: CGFloat,bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKEffectNode {
         let squareStrokeNode = SKEffectNode()
         
         let bloomFilter = CIFilter(name: "CIBloom")!
@@ -90,7 +90,7 @@ class GameScene: SKScene {
         squareStrokeNode.shouldEnableEffects = true
         let borderNode = SKShapeNode(rectOf: size, cornerRadius: radius)
         borderNode.strokeColor = SKColor.white
-        borderNode.lineWidth = 4
+        borderNode.lineWidth = lineWidth
         borderNode.fillColor = SKColor.clear
         squareStrokeNode.addChild(borderNode)
         return squareStrokeNode
