@@ -4,7 +4,7 @@ import UIKit
 
 class GameScene: SKScene {
     private var squareNode : SKNode?
-    private var circleNode : SKShapeNode?
+    private var circleNode : SKNode?
     
     override func didMove(to view: SKView) {
         // Background
@@ -29,8 +29,9 @@ class GameScene: SKScene {
     }
 
     private func createCircleNode() {
-        self.circleNode = SKShapeNode(rectOf: CGSize(width: 144, height: 144), cornerRadius: 144)
-        circleNode?.lineWidth = 4
+        let circleStrokeNode = createBloomStrokeNode(size: CGSize(width: 96, height: 96), radius: 96, bloomIntensity: 1.0, bloomRadius: 10)
+        circleNode = SKNode()
+        circleNode?.addChild(circleStrokeNode)
         circleNode?.run(SKAction.sequence([
             SKAction.wait(forDuration: 0.5),
             SKAction.fadeOut(withDuration: 0.5),
@@ -40,7 +41,7 @@ class GameScene: SKScene {
 
     private func createSquareNode(size: CGSize, blurRadius: CGFloat, colors: [String], bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKNode {
         let squareBodyNode = createSquareBodyNode(size: size, blurRadius: blurRadius, colors: colors)
-        let squareStrokeNode = createSquareStrokeNode(size: size, bloomIntensity: bloomIntensity, bloomRadius: bloomRadius)
+        let squareStrokeNode = createBloomStrokeNode(size: size, radius: 0, bloomIntensity: bloomIntensity, bloomRadius: bloomRadius)
         
         let squareNode = SKNode()
         squareNode.addChild(squareBodyNode)
@@ -49,19 +50,19 @@ class GameScene: SKScene {
     }
 
     private func createSquareBodyNode(size: CGSize, blurRadius: CGFloat, colors: [String]) -> SKEffectNode {
-        let squareBodyNode = SKEffectNode()
-        squareBodyNode.shouldRasterize = true
-        squareBodyNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": blurRadius])
+        let effectNode = SKEffectNode()
+        effectNode.shouldRasterize = true
+        effectNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": blurRadius])
         
         let gradientLayer = createGradientLayer(frame: CGRect(origin: .zero, size: size), colors: colors, startPoint: CGPoint(x: 0.0, y: 0.5), endPoint: CGPoint(x: 1.0, y: 0.5))
         let gradientImage = image(from: gradientLayer)
         
-        let squareSprite = SKSpriteNode(texture: SKTexture(image: gradientImage))
-        squareBodyNode.addChild(squareSprite)
-        return squareBodyNode
+        let spriteNode = SKSpriteNode(texture: SKTexture(image: gradientImage))
+        effectNode.addChild(spriteNode)
+        return effectNode
     }
 
-    private func createSquareStrokeNode(size: CGSize, bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKEffectNode {
+    private func createBloomStrokeNode(size: CGSize, radius: CGFloat,bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKEffectNode {
         let squareStrokeNode = SKEffectNode()
         
         let bloomFilter = CIFilter(name: "CIBloom")!
@@ -70,7 +71,7 @@ class GameScene: SKScene {
         
         squareStrokeNode.filter = bloomFilter
         squareStrokeNode.shouldEnableEffects = true
-        let borderNode = SKShapeNode(rectOf: size)
+        let borderNode = SKShapeNode(rectOf: size, cornerRadius: radius)
         borderNode.strokeColor = SKColor.white
         borderNode.lineWidth = 4
         borderNode.fillColor = SKColor.clear
@@ -108,25 +109,22 @@ class GameScene: SKScene {
     
     
     func touchDown(atPoint pos : CGPoint) {
-        if let n = self.circleNode?.copy() as! SKShapeNode? {
+        if let n = self.circleNode?.copy() as! SKNode? {
             n.position = pos
-            n.strokeColor = SKColor.white
             self.addChild(n)
         }
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.circleNode?.copy() as! SKShapeNode? {
+        if let n = self.circleNode?.copy() as! SKNode? {
             n.position = pos
-            n.strokeColor = SKColor.white
             self.addChild(n)
         }
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        if let n = self.circleNode?.copy() as! SKShapeNode? {
+        if let n = self.circleNode?.copy() as! SKNode? {
             n.position = pos
-            n.strokeColor = SKColor.white
             self.addChild(n)
         }
 //        moveSquareNode(toPoint: pos)
