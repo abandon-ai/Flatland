@@ -3,8 +3,8 @@ import GameplayKit
 import UIKit
 
 class GameScene: SKScene {
-    private var squareNode : SKNode?
-    private var circleNode : SKNode?
+    private var squareNode : SKSpriteNode?
+    private var circleNode : SKSpriteNode?
     
     override func didMove(to view: SKView) {
         // Background
@@ -17,8 +17,8 @@ class GameScene: SKScene {
         createCircleNode()
         
         // Square Node
-        let squareNode = createSquareNode(size: CGSize(width: 96, height: 96), blurRadius: 10.0, colors: ["#3D70E5", "#CEFEEC"], bloomIntensity: 1.0, bloomRadius: 10.0)
-        self.addChild(squareNode)
+        squareNode = createSquareNode(size: CGSize(width: 96, height: 96), blurRadius: 10.0, colors: ["#3D70E5", "#CEFEEC"], bloomIntensity: 1.0, bloomRadius: 10.0)
+        self.addChild(squareNode!)
     }
 
     private func createBackgroundNode(size: CGSize, colors: [String], startPoint: CGPoint, endPoint: CGPoint) -> SKSpriteNode {
@@ -30,7 +30,7 @@ class GameScene: SKScene {
 
     private func createCircleNode() {
         let circleStrokeNode = createBloomStrokeNode(size: CGSize(width: 96, height: 96), radius: 96, bloomIntensity: 1.0, bloomRadius: 10)
-        circleNode = SKNode()
+        circleNode = SKSpriteNode()
         circleNode?.addChild(circleStrokeNode)
         circleNode?.run(SKAction.sequence([
             SKAction.wait(forDuration: 0.5),
@@ -39,7 +39,7 @@ class GameScene: SKScene {
         ]))
     }
 
-    private func createSquareNode(size: CGSize, blurRadius: CGFloat, colors: [String], bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKNode {
+    private func createSquareNode(size: CGSize, blurRadius: CGFloat, colors: [String], bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKSpriteNode {
         let squareBodyNode = createSquareBodyNode(size: size, blurRadius: blurRadius, colors: colors)
         let squareStrokeNode = createBloomStrokeNode(size: size, radius: 0, bloomIntensity: bloomIntensity, bloomRadius: bloomRadius)
         
@@ -56,7 +56,7 @@ class GameScene: SKScene {
         rightEye.position = CGPoint(x: 64, y: 20)
         noce.position = CGPoint(x: 24, y: 10)
         
-        let squareNode = SKNode()
+        let squareNode = SKSpriteNode()
         squareNode.addChild(squareBodyNode)
         squareNode.addChild(squareStrokeNode)
         squareNode.addChild(leftEye)
@@ -113,10 +113,10 @@ class GameScene: SKScene {
     }
     
     func moveSquareNode(toPoint pos: CGPoint) {
-        let asstNodeSpeed: CGFloat = 500
+        let squareNodeSpeed: CGFloat = 2000
         if let squareNode = self.squareNode {
             let distance = hypot(pos.x - squareNode.position.x, pos.y - squareNode.position.y)
-            let duration = TimeInterval(distance / asstNodeSpeed)
+            let duration = TimeInterval(distance / squareNodeSpeed)
             
             let moveAction = SKAction.move(to: pos, duration: duration)
             squareNode.run(moveAction)
@@ -129,6 +129,7 @@ class GameScene: SKScene {
             n.position = pos
             self.addChild(n)
         }
+        moveSquareNode(toPoint: pos)
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -136,6 +137,7 @@ class GameScene: SKScene {
             n.position = pos
             self.addChild(n)
         }
+        moveSquareNode(toPoint: pos)
     }
     
     func touchUp(atPoint pos : CGPoint) {
@@ -143,7 +145,7 @@ class GameScene: SKScene {
             n.position = pos
             self.addChild(n)
         }
-//        moveSquareNode(toPoint: pos)
+        moveSquareNode(toPoint: pos)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
