@@ -43,9 +43,25 @@ class GameScene: SKScene {
         let squareBodyNode = createSquareBodyNode(size: size, blurRadius: blurRadius, colors: colors)
         let squareStrokeNode = createBloomStrokeNode(size: size, radius: 0, bloomIntensity: bloomIntensity, bloomRadius: bloomRadius)
         
+        let leftEye = SKShapeNode(rectOf: CGSize(width: 16, height: 16), cornerRadius: 16)
+        let rightEye = SKShapeNode(rectOf: CGSize(width: 16, height: 16), cornerRadius: 16)
+        let noce = SKShapeNode(rectOf: CGSize(width: 16, height: 4))
+        leftEye.fillColor = SKColor.black
+        leftEye.lineWidth = 0
+        noce.fillColor = SKColor.black
+        noce.lineWidth = 0
+        rightEye.fillColor = SKColor.black
+        rightEye.lineWidth = 0
+        leftEye.position = CGPoint(x: -16, y: 16)
+        rightEye.position = CGPoint(x: 64, y: 20)
+        noce.position = CGPoint(x: 24, y: 10)
+        
         let squareNode = SKNode()
         squareNode.addChild(squareBodyNode)
         squareNode.addChild(squareStrokeNode)
+        squareNode.addChild(leftEye)
+        squareNode.addChild(rightEye)
+        squareNode.addChild(noce)
         return squareNode
     }
 
