@@ -31,12 +31,13 @@ class GameScene: SKScene {
     private func createCircleNode() {
         let circleStrokeNode = createBloomStrokeNode(size: CGSize(width: 96, height: 96), radius: 96, bloomIntensity: 1.0, bloomRadius: 10)
         circleNode = SKSpriteNode()
-        circleNode?.addChild(circleStrokeNode)
-        circleNode?.run(SKAction.sequence([
+        circleNode.addChild(circleStrokeNode)
+        circleNode.run(SKAction.sequence([
             SKAction.wait(forDuration: 0.5),
             SKAction.fadeOut(withDuration: 0.5),
             SKAction.removeFromParent()
         ]))
+        circleNode.alpha = 0.2
     }
 
     private func createSquareNode(size: CGSize, blurRadius: CGFloat, colors: [String], bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKSpriteNode {
