@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "8D3CD4D4-98D1-4907-A09B-F086897C4DF2"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D802D668-208B-4586-9EE0-515448B698AA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Flatland/Scenes/GameScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "6"
+            endingLineNumber = "6"
+            landmarkName = "GameScene"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "D802D668-208B-4586-9EE0-515448B698AA - 7398e31bd7e7b8ba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flatland.GameScene.squareNode.getter : Flatland.SquareNode"
+                  moduleName = "Flatland"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teihate/github/tunogya/Flatland/Flatland/Scenes/GameScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "D802D668-208B-4586-9EE0-515448B698AA - 63c2371d2868f418"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flatland.GameScene.squareNode.setter : Flatland.SquareNode"
+                  moduleName = "Flatland"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teihate/github/tunogya/Flatland/Flatland/Scenes/GameScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "D802D668-208B-4586-9EE0-515448B698AA - 2c5eabf13641796b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flatland.GameScene.squareNode.modify : Flatland.SquareNode"
+                  moduleName = "Flatland"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teihate/github/tunogya/Flatland/Flatland/Scenes/GameScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "D802D668-208B-4586-9EE0-515448B698AA - 82acbd5ec70d34c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flatland.GameScene.squareNode.modify : Flatland.SquareNode with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Flatland"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teihate/github/tunogya/Flatland/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "D802D668-208B-4586-9EE0-515448B698AA - 46bd54ebb074d923"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flatland.GameScene.init(size: __C.CGSize) -&gt; Flatland.GameScene"
+                  moduleName = "Flatland"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teihate/github/tunogya/Flatland/Flatland/Scenes/GameScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "D802D668-208B-4586-9EE0-515448B698AA - c954701654a79c58"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flatland.GameScene.init() -&gt; Flatland.GameScene"
+                  moduleName = "Flatland"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teihate/github/tunogya/Flatland/Flatland/Scenes/GameScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "D802D668-208B-4586-9EE0-515448B698AA - 2da20cfa4c93941b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flatland.GameScene.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Flatland.GameScene&gt;"
+                  moduleName = "Flatland"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teihate/github/tunogya/Flatland/Flatland/Scenes/GameScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "425A35E4-3A36-493B-83F1-CD61EB49A55F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Flatland/Scenes/GameScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "didMove(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
