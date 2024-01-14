@@ -9,6 +9,7 @@ class GameScene: SKScene {
     var thumbstickX: CGFloat = 0.0
     var thumbstickY: CGFloat = 0.0
     
+    
     override func didMove(to view: SKView) {
         configureGamePad()
         
@@ -116,8 +117,14 @@ class GameScene: SKScene {
         let moveSpeed: CGFloat = 10.0
         let xDistance = thumbstickX * moveSpeed
         let yDistance = thumbstickY * moveSpeed
+        self.squareNode.moveBy(x: xDistance, y: yDistance)
         
-        squareNode.moveBy(x: xDistance, y: yDistance)
+        let rotation = self.squareNode.zRotation
+        if abs(rotation).truncatingRemainder(dividingBy: 2 * .pi) > .pi / 2 {
+            self.squareNode.lookLeft()
+        } else {
+            self.squareNode.lookRight()
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {

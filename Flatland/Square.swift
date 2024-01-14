@@ -2,7 +2,11 @@ import SpriteKit
 import UIKit
 
 class Square: SKSpriteNode {
-    let moveDistance: CGFloat = 1.0
+    private let moveDistance: CGFloat = 1.0
+    
+    private var leftEye: SKNode!
+    private var rightEye: SKNode!
+    private var nose: SKNode!
     
     init() {
         super.init(texture: nil, color: .clear, size: CGSize(width: 96, height: 96))
@@ -10,13 +14,11 @@ class Square: SKSpriteNode {
         let squareBodyNode = createSquareBodyNode(size: CGSize(width: 96, height: 96), blurRadius: 10, colors: ["#3D70E5", "#CEFEEC"])
         let squareStrokeNode = CreateBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 0, bloomIntensity: 2.0, bloomRadius: 10.0)
         
-        let leftEye = createEyeNode()
-        let rightEye = createEyeNode()
-        let nose = createNoseNode()
+        leftEye = createEyeNode()
+        rightEye = createEyeNode()
+        nose = createNoseNode()
         
-        leftEye.position = CGPoint(x: -16, y: 16)
-        rightEye.position = CGPoint(x: 64, y: 20)
-        nose.position = CGPoint(x: 24, y: 10)
+        self.lookRight()
         
         self.addChild(squareBodyNode)
         self.addChild(squareStrokeNode)
@@ -90,5 +92,17 @@ class Square: SKSpriteNode {
     func rotate(clockwise: Bool, angle: CGFloat) {
         let rotateAction = SKAction.rotate(byAngle: clockwise ? -angle : angle, duration: 0.1)
         self.run(rotateAction)
+    }
+    
+    func lookRight() {
+        leftEye.position = CGPoint(x: -16, y: 16)
+        rightEye.position = CGPoint(x: 64, y: 20)
+        nose.position = CGPoint(x: 24, y: 10)
+    }
+    
+    func lookLeft() {
+        leftEye.position = CGPoint(x: -16, y: -16)
+        rightEye.position = CGPoint(x: 64, y: -20)
+        nose.position = CGPoint(x: 24, y: -10)
     }
 }

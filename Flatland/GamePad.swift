@@ -51,115 +51,98 @@ class GamePad {
         
         gamepad.buttonA.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Button A pressed")
                 self.buttonAPressed?()
             }
         }
         
         gamepad.buttonB.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Button B pressed")
                 self.buttonAPressed?()
             }
         }
         
         gamepad.buttonX.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Button X pressed")
                 self.buttonAPressed?()
             }
         }
         
         gamepad.buttonY.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Button Y pressed")
                 self.buttonAPressed?()
             }
         }
         
         gamepad.leftThumbstick.valueChangedHandler = { (thumbstick, xValue, yValue) in
-            print("Left thumbstick: \(xValue), \(yValue)")
             self.leftThumbstickMoved?(xValue, yValue)
         }
         
         gamepad.leftThumbstickButton?.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Left Thumb stick button pressed")
                 self.leftThumbStickButtonPressed?()
             }
         }
         
         gamepad.rightThumbstick.valueChangedHandler = { (thumbstick, xValue, yValue) in
-            print("Right thumbstick: \(xValue), \(yValue)")
             self.rightThumbstickMoved?(xValue, yValue)
         }
         
         gamepad.rightThumbstickButton?.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Right Thumb stick button pressed")
                 self.rightThumbStickButtonPressed?()
             }
         }
         
         gamepad.buttonMenu.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Button Menu pressed")
                 self.buttonMenuPressed?()
             }
         }
         
         gamepad.dpad.up.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Dpad up pressed")
                 self.dpadUpPressed?()
             }
         }
         
         gamepad.dpad.down.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Dpad down pressed")
                 self.dpadDownPressed?()
             }
         }
         
         gamepad.dpad.left.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Dpad left pressed")
                 self.dpadLeftPressed?()
             }
         }
         
         gamepad.dpad.right.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Dpad right pressed")
                 self.dpadRightPressed?()
             }
         }
         
         gamepad.leftShoulder.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Left Shoulder pressed")
                 self.leftShoulderPressed?()
             }
         }
         
         gamepad.rightShoulder.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
-                print("Right Shoulder pressed")
                 self.rightShoulderPressed?()
             }
         }
         
         gamepad.leftTrigger.valueChangedHandler = { (trigger, value, pressed) in
             if pressed {
-                print("Left Trigger value: \(value)") // value 范围从 0.0 (未按压) 到 1.0 (完全按压)
                 self.leftTriggerPressed?(value)
             }
          }
         
         gamepad.rightTrigger.valueChangedHandler = { (trigger, value, pressed) in
             if pressed {
-                print("Right Trigger value: \(value)") // value 范围同上
                 self.rightTriggerPressed?(value)
             }
         }
