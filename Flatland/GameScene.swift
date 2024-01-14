@@ -18,7 +18,7 @@ class GameScene: SKScene {
         squareNode.name = "Angle"
         self.addChild(squareNode)
         
-        let circleStrokeNode = createBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 48, bloomIntensity: 2.0, bloomRadius: 10)
+        let circleStrokeNode = CreateBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 48, bloomIntensity: 2.0, bloomRadius: 10)
         circleNode = SKSpriteNode()
         circleNode.addChild(circleStrokeNode)
         circleNode.run(SKAction.sequence([

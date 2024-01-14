@@ -8,7 +8,7 @@ class Square: SKSpriteNode {
         super.init(texture: nil, color: .clear, size: CGSize(width: 96, height: 96))
         
         let squareBodyNode = createSquareBodyNode(size: CGSize(width: 96, height: 96), blurRadius: 10, colors: ["#3D70E5", "#CEFEEC"])
-        let squareStrokeNode = createBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 0, bloomIntensity: 2.0, bloomRadius: 10.0)
+        let squareStrokeNode = CreateBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 0, bloomIntensity: 2.0, bloomRadius: 10.0)
         
         let leftEye = createEyeNode()
         let rightEye = createEyeNode()
@@ -45,7 +45,7 @@ class Square: SKSpriteNode {
     
     private func createSquareNode(size: CGSize, blurRadius: CGFloat, colors: [String], bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKSpriteNode {
         let squareBodyNode = createSquareBodyNode(size: size, blurRadius: blurRadius, colors: colors)
-        let squareStrokeNode = createBloomStrokeNode(size: size, lineWidth: 4, radius: 0, bloomIntensity: bloomIntensity, bloomRadius: bloomRadius)
+        let squareStrokeNode = CreateBloomStrokeNode(size: size, lineWidth: 4, radius: 0, bloomIntensity: bloomIntensity, bloomRadius: bloomRadius)
         
         let leftEye = SKShapeNode(rectOf: CGSize(width: 16, height: 16), cornerRadius: 16)
         let rightEye = SKShapeNode(rectOf: CGSize(width: 16, height: 16), cornerRadius: 16)
@@ -74,8 +74,8 @@ class Square: SKSpriteNode {
         effectNode.shouldRasterize = true
         effectNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": blurRadius])
         
-        let gradientLayer = createGradientLayer(frame: CGRect(origin: .zero, size: size), colors: colors, startPoint: CGPoint(x: 0.0, y: 0.5), endPoint: CGPoint(x: 1.0, y: 0.5))
-        let gradientImage = image(from: gradientLayer)
+        let gradientLayer = CreateGradientLayer(frame: CGRect(origin: .zero, size: size), colors: colors, startPoint: CGPoint(x: 0.0, y: 0.5), endPoint: CGPoint(x: 1.0, y: 0.5))
+        let gradientImage = CreateImage(from: gradientLayer)
         
         let spriteNode = SKSpriteNode(texture: SKTexture(image: gradientImage))
         effectNode.addChild(spriteNode)

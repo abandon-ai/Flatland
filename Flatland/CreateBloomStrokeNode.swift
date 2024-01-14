@@ -1,6 +1,6 @@
 import SpriteKit
 
-func createBloomStrokeNode(size: CGSize, lineWidth: CGFloat, radius: CGFloat,bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKEffectNode {
+func CreateBloomStrokeNode(size: CGSize, lineWidth: CGFloat, radius: CGFloat,bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKEffectNode {
     let squareStrokeNode = SKEffectNode()
     
     let bloomFilter = CIFilter(name: "CIBloom")!
