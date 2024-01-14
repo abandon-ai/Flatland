@@ -78,21 +78,17 @@ class GameScene: SKScene {
     private func configureGamePad() {
         gamePad = GamePad()
         
-        gamePad?.dpadLeftPressed = { [weak self] in
-            self?.squareNode.moveLeft()
-        }
-        
-        gamePad?.dpadRightPressed = { [weak self] in
-            self?.squareNode.moveRight()
-        }
-        
-        gamePad?.dpadUpPressed = { [weak self] in
-            self?.squareNode.moveUp()
-        }
-        
-        gamePad?.dpadDownPressed = { [weak self] in
-            self?.squareNode.moveDown()
-        }
+//        gamePad?.dpadLeftPressed = { [weak self] in
+//        }
+//        
+//        gamePad?.dpadRightPressed = { [weak self] in
+//        }
+//        
+//        gamePad?.dpadUpPressed = { [weak self] in
+//        }
+//        
+//        gamePad?.dpadDownPressed = { [weak self] in
+//        }
         
         gamePad?.leftShoulderPressed = { [weak self] in
             self?.squareNode.rotate(clockwise: false, angle: 90 * .pi / 180)
@@ -102,18 +98,13 @@ class GameScene: SKScene {
             self?.squareNode.rotate(clockwise: true, angle: 90 * .pi / 180)
         }
         
-        gamePad?.leftThumbstickMoved = { [weak self] xValue, yValue in
-            if xValue < 0 {
-                self?.squareNode.moveLeft()
+        gamePad?.rightThumbstickMoved = { [weak self] xValue, yValue in
+            if xValue == 0 && yValue == 0 {
+                self?.squareNode.zRotation = 0
             } else {
-                self?.squareNode.moveRight()
-            }
-            if yValue < 0 {
-                self?.squareNode.moveDown()
-            } else {
-                self?.squareNode.moveUp()
+                let angle = atan2(CGFloat(yValue), CGFloat(xValue))
+                self?.squareNode.zRotation = angle
             }
         }
-        
     }
 }
