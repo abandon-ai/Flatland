@@ -7,11 +7,7 @@ class GameScene: SKScene {
     private var gamePad: GamePad?
     
     override func didMove(to view: SKView) {
-        gamePad = GamePad()
-        
-        gamePad?.buttonAPressed = { [weak self] in
-            
-        }
+        configureGamePad()
         
         let backgroundNode = Background(size: self.size)
         self.addChild(backgroundNode)
@@ -77,5 +73,47 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+    }
+    
+    private func configureGamePad() {
+        gamePad = GamePad()
+        
+        gamePad?.dpadLeftPressed = { [weak self] in
+            self?.squareNode.moveLeft()
+        }
+        
+        gamePad?.dpadRightPressed = { [weak self] in
+            self?.squareNode.moveRight()
+        }
+        
+        gamePad?.dpadUpPressed = { [weak self] in
+            self?.squareNode.moveUp()
+        }
+        
+        gamePad?.dpadDownPressed = { [weak self] in
+            self?.squareNode.moveDown()
+        }
+        
+        gamePad?.leftShoulderPressed = { [weak self] in
+            self?.squareNode.rotate(clockwise: false, angle: 90 * .pi / 180)
+        }
+        
+        gamePad?.rightShoulderPressed = { [weak self] in
+            self?.squareNode.rotate(clockwise: true, angle: 90 * .pi / 180)
+        }
+        
+        gamePad?.leftThumbstickMoved = { [weak self] xValue, yValue in
+            if xValue < 0 {
+                self?.squareNode.moveLeft()
+            } else {
+                self?.squareNode.moveRight()
+            }
+            if yValue < 0 {
+                self?.squareNode.moveDown()
+            } else {
+                self?.squareNode.moveUp()
+            }
+        }
+        
     }
 }
