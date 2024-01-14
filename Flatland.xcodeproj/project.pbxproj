@@ -17,7 +17,6 @@
 		176B30892B4D01C700A8B8E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176B30872B4D01C700A8B8E5 /* LaunchScreen.storyboard */; };
 		177878D02B53C0EB00F289F4 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878CF2B53C0EB00F289F4 /* Background.swift */; };
 		177878D22B53C17F00F289F4 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878D12B53C17F00F289F4 /* Square.swift */; };
-		177878D42B53C1A400F289F4 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878D32B53C1A400F289F4 /* Circle.swift */; };
 		177878D92B53C2EC00F289F4 /* createGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878D82B53C2EC00F289F4 /* createGradientLayer.swift */; };
 		177878DB2B53C30700F289F4 /* image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878DA2B53C30700F289F4 /* image.swift */; };
 		177878DD2B53C32800F289F4 /* createBloomStrokeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878DC2B53C32800F289F4 /* createBloomStrokeNode.swift */; };
@@ -36,7 +35,6 @@
 		176B30882B4D01C700A8B8E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		177878CF2B53C0EB00F289F4 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		177878D12B53C17F00F289F4 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
-		177878D32B53C1A400F289F4 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		177878D82B53C2EC00F289F4 /* createGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createGradientLayer.swift; sourceTree = "<group>"; };
 		177878DA2B53C30700F289F4 /* image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = image.swift; sourceTree = "<group>"; };
 		177878DC2B53C32800F289F4 /* createBloomStrokeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createBloomStrokeNode.swift; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 			children = (
 				177878CF2B53C0EB00F289F4 /* Background.swift */,
 				177878D12B53C17F00F289F4 /* Square.swift */,
-				177878D32B53C1A400F289F4 /* Circle.swift */,
 			);
 			name = GameEntities;
 			sourceTree = "<group>";
@@ -203,7 +200,6 @@
 				177878D92B53C2EC00F289F4 /* createGradientLayer.swift in Sources */,
 				176B30812B4D01C400A8B8E5 /* GameViewController.swift in Sources */,
 				176B30792B4D01C400A8B8E5 /* AppDelegate.swift in Sources */,
-				177878D42B53C1A400F289F4 /* Circle.swift in Sources */,
 				177878DD2B53C32800F289F4 /* createBloomStrokeNode.swift in Sources */,
 				177878D02B53C0EB00F289F4 /* Background.swift in Sources */,
 				177878DB2B53C30700F289F4 /* image.swift in Sources */,
