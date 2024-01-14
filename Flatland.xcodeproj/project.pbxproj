@@ -20,6 +20,7 @@
 		177878D92B53C2EC00F289F4 /* createGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878D82B53C2EC00F289F4 /* createGradientLayer.swift */; };
 		177878DB2B53C30700F289F4 /* image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878DA2B53C30700F289F4 /* image.swift */; };
 		177878DD2B53C32800F289F4 /* createBloomStrokeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878DC2B53C32800F289F4 /* createBloomStrokeNode.swift */; };
+		177878E12B53CF6B00F289F4 /* GamePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878E02B53CF6B00F289F4 /* GamePad.swift */; };
 		17A9E7A82B4DA694000851B7 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A9E7A72B4DA694000851B7 /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		177878D82B53C2EC00F289F4 /* createGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createGradientLayer.swift; sourceTree = "<group>"; };
 		177878DA2B53C30700F289F4 /* image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = image.swift; sourceTree = "<group>"; };
 		177878DC2B53C32800F289F4 /* createBloomStrokeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createBloomStrokeNode.swift; sourceTree = "<group>"; };
+		177878E02B53CF6B00F289F4 /* GamePad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePad.swift; sourceTree = "<group>"; };
 		17A9E7A72B4DA694000851B7 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 		177878DF2B53C39300F289F4 /* GameControls */ = {
 			isa = PBXGroup;
 			children = (
+				177878E02B53CF6B00F289F4 /* GamePad.swift */,
 			);
 			name = GameControls;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				176B307F2B4D01C400A8B8E5 /* GameScene.swift in Sources */,
+				177878E12B53CF6B00F289F4 /* GamePad.swift in Sources */,
 				17A9E7A82B4DA694000851B7 /* UIColor.swift in Sources */,
 				177878D22B53C17F00F289F4 /* Square.swift in Sources */,
 				177878D92B53C2EC00F289F4 /* createGradientLayer.swift in Sources */,

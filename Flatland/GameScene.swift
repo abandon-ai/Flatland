@@ -4,8 +4,15 @@ import GameplayKit
 class GameScene: SKScene {
     var squareNode = Square()
     private var circleNode: SKSpriteNode!
+    private var gamePad: GamePad?
     
     override func didMove(to view: SKView) {
+        gamePad = GamePad()
+        
+        gamePad?.buttonAPressed = { [weak self] in
+            
+        }
+        
         let backgroundNode = Background(size: self.size)
         self.addChild(backgroundNode)
         

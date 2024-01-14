@@ -2,6 +2,8 @@ import SpriteKit
 import UIKit
 
 class Square: SKSpriteNode {
+    let moveDistance: CGFloat = 10.0
+    
     init() {
         super.init(texture: nil, color: .clear, size: CGSize(width: 96, height: 96))
         
@@ -78,5 +80,30 @@ class Square: SKSpriteNode {
         let spriteNode = SKSpriteNode(texture: SKTexture(image: gradientImage))
         effectNode.addChild(spriteNode)
         return effectNode
+    }
+    
+    func moveUp() {
+        let moveUpAction = SKAction.moveBy(x: 0, y: moveDistance, duration: 0.1)
+        self.run(moveUpAction)
+    }
+    
+    func moveDown() {
+        let moveDownAction = SKAction.moveBy(x: 0, y: -moveDistance, duration: 0.1)
+        self.run(moveDownAction)
+    }
+    
+    func moveLeft() {
+        let moveLeftAction = SKAction.moveBy(x: -moveDistance, y: 0, duration: 0.1)
+        self.run(moveLeftAction)
+    }
+    
+    func moveRight() {
+        let moveRightAction = SKAction.moveBy(x: moveDistance, y: 0, duration: 0.1)
+        self.run(moveRightAction)
+    }
+    
+    func rotate(clockwise: Bool, angle: CGFloat) {
+        let rotateAction = SKAction.rotate(byAngle: clockwise ? -angle : angle, duration: 0.1)
+        self.run(rotateAction)
     }
 }
