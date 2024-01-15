@@ -6,7 +6,9 @@ class Square: SKSpriteNode {
     
     private var leftEye: SKNode!
     private var rightEye: SKNode!
-    private var nose: SKNode!
+    private var mouth: SKNode!
+    // Temperature is the emotional expression value of the character, [0, 1].
+    private var temperature: CGFloat = 0.5
     
     init() {
         super.init(texture: nil, color: .clear, size: CGSize(width: 96, height: 96))
@@ -16,7 +18,7 @@ class Square: SKSpriteNode {
         
         leftEye = createEyeNode()
         rightEye = createEyeNode()
-        nose = createNoseNode()
+        mouth = createMouth()
         
         self.lookRight()
         
@@ -24,7 +26,7 @@ class Square: SKSpriteNode {
         self.addChild(squareStrokeNode)
         self.addChild(leftEye)
         self.addChild(rightEye)
-        self.addChild(nose)
+        self.addChild(mouth)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,11 +40,23 @@ class Square: SKSpriteNode {
         return eye
     }
     
-    private func createNoseNode() -> SKShapeNode {
-        let nose = SKShapeNode(rectOf: CGSize(width: 16, height: 4))
-        nose.fillColor = SKColor.black
-        nose.lineWidth = 0
-        return nose
+    private func createMouth() -> SKShapeNode {
+        let mouthWidth: CGFloat = 16
+        let mouthHeight: CGFloat = 8
+        
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: -1 * mouthWidth / 2, y: 0))
+        if (self.temperature < 0.4) {
+            path.addLine(to: CGPoint(x: 0, y: mouthHeight))
+        }
+        path.addLine(to: CGPoint(x: mouthWidth / 2, y: 0))
+        
+        let mouth = SKShapeNode(path: path.cgPath)
+        mouth.fillColor = SKColor.clear
+        mouth.lineWidth = 4
+        mouth.strokeColor = SKColor.black
+        
+        return mouth
     }
     
     private func createSquareNode(size: CGSize, blurRadius: CGFloat, colors: [String], bloomIntensity: CGFloat, bloomRadius: CGFloat) -> SKSpriteNode {
@@ -97,12 +111,19 @@ class Square: SKSpriteNode {
     func lookRight() {
         leftEye.position = CGPoint(x: -16, y: 16)
         rightEye.position = CGPoint(x: 64, y: 20)
-        nose.position = CGPoint(x: 24, y: 10)
+        mouth.position = CGPoint(x: 24, y: 10)
     }
     
     func lookLeft() {
         leftEye.position = CGPoint(x: -16, y: -16)
         rightEye.position = CGPoint(x: 64, y: -20)
-        nose.position = CGPoint(x: 24, y: -10)
+        mouth.position = CGPoint(x: 24, y: -10)
+    }
+    
+    func update() {
+        self.mouth?.removeFromParent()
+        let newMouth = createMouth()
+        self.addChild(newMouth)
+        self.mouth = newMouth
     }
 }
