@@ -114,10 +114,7 @@ class GameScene: SKScene {
     }
     
     func updateSquare() {
-        let moveSpeed: CGFloat = 10.0
-        let xDistance = thumbstickX * moveSpeed
-        let yDistance = thumbstickY * moveSpeed
-        self.squareNode.moveBy(x: xDistance, y: yDistance)
+        self.squareNode.moveBy(x: thumbstickX, y: thumbstickY)
         
         let rotation = self.squareNode.zRotation
         if abs(rotation).truncatingRemainder(dividingBy: 2 * .pi) > .pi / 2 {

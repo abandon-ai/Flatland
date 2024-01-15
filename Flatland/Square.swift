@@ -99,6 +99,8 @@ class Square: SKSpriteNode {
     }
     
     func moveBy(x: CGFloat, y: CGFloat) {
+        // Emotions can affect speed.
+        // 0.5 -> 10,
         let moveUpAction = SKAction.moveBy(x: x, y: y, duration: 0.1)
         self.run(moveUpAction)
     }
