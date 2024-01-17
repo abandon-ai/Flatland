@@ -6,10 +6,6 @@ class GameScene: SKScene {
     private var circleNode: SKSpriteNode!
     private var gamePad: GamePad?
     
-    var thumbstickX: CGFloat = 0.0
-    var thumbstickY: CGFloat = 0.0
-    
-    
     override func didMove(to view: SKView) {
         configureGamePad()
         
@@ -100,33 +96,29 @@ class GameScene: SKScene {
         
         gamePad?.rightThumbstickMoved = { [weak self] xValue, yValue in
             if xValue == 0 && yValue == 0 {
-                self?.squareNode.zRotation = 0
+                self?.squareNode.updateZ(angle: 0)
             } else {
                 let angle = atan2(CGFloat(yValue), CGFloat(xValue))
-                self?.squareNode.zRotation = angle
+                self?.squareNode.updateZ(angle: angle)
             }
         }
         
         gamePad?.leftThumbstickMoved = { [weak self] xValue, yValue in
-            self?.thumbstickX = CGFloat(xValue)
-            self?.thumbstickY = CGFloat(yValue)
+            // TODO
         }
-    }
-    
-    func updateSquare() {
-        self.squareNode.moveBy(x: thumbstickX, y: thumbstickY)
         
-        let rotation = self.squareNode.zRotation
-        if abs(rotation).truncatingRemainder(dividingBy: 2 * .pi) > .pi / 2 {
-            self.squareNode.lookLeft()
-        } else {
-            self.squareNode.lookRight()
+        gamePad?.leftTriggerPressed =  { [weak self] value in
+            self?.squareNode.incrV(value: value)
+        }
+        
+        gamePad?.rightTriggerPressed =  { [weak self] value in
+            self?.squareNode.decrV(value: value)
         }
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        self.updateSquare()
+        self.squareNode.update()
     }
 }
 

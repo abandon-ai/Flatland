@@ -16,10 +16,10 @@ class GamePad {
     var rightShoulderPressed: (() -> Void)?
     var leftThumbStickButtonPressed: (() -> Void)?
     var rightThumbStickButtonPressed: (() -> Void)?
-    var leftThumbstickMoved: ((_ xValue: Float, _ yValue: Float) -> Void)?
-    var rightThumbstickMoved: ((_ xValue: Float, _ yValue: Float) -> Void)?
-    var leftTriggerPressed: ((_ value: Float) -> Void)?
-    var rightTriggerPressed: ((_ value: Float) -> Void)?
+    var leftThumbstickMoved: ((_ xValue: CGFloat, _ yValue: CGFloat) -> Void)?
+    var rightThumbstickMoved: ((_ xValue: CGFloat, _ yValue: CGFloat) -> Void)?
+    var leftTriggerPressed: ((_ value: CGFloat) -> Void)?
+    var rightTriggerPressed: ((_ value: CGFloat) -> Void)?
     
     init() {
         setupControllers()
@@ -74,7 +74,7 @@ class GamePad {
         }
         
         gamepad.leftThumbstick.valueChangedHandler = { (thumbstick, xValue, yValue) in
-            self.leftThumbstickMoved?(xValue, yValue)
+            self.leftThumbstickMoved?(CGFloat(xValue), CGFloat(yValue))
         }
         
         gamepad.leftThumbstickButton?.pressedChangedHandler = { (button, value, pressed) in
@@ -84,7 +84,7 @@ class GamePad {
         }
         
         gamepad.rightThumbstick.valueChangedHandler = { (thumbstick, xValue, yValue) in
-            self.rightThumbstickMoved?(xValue, yValue)
+            self.rightThumbstickMoved?(CGFloat(xValue), CGFloat(yValue))
         }
         
         gamepad.rightThumbstickButton?.pressedChangedHandler = { (button, value, pressed) in
@@ -132,18 +132,6 @@ class GamePad {
         gamepad.rightShoulder.pressedChangedHandler = { (button, value, pressed) in
             if pressed {
                 self.rightShoulderPressed?()
-            }
-        }
-        
-        gamepad.leftTrigger.valueChangedHandler = { (trigger, value, pressed) in
-            if pressed {
-                self.leftTriggerPressed?(value)
-            }
-         }
-        
-        gamepad.rightTrigger.valueChangedHandler = { (trigger, value, pressed) in
-            if pressed {
-                self.rightTriggerPressed?(value)
             }
         }
     }

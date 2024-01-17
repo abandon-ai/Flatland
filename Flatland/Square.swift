@@ -9,6 +9,10 @@ class Square: SKSpriteNode {
     private var mouth: SKNode!
     // Temperature is the emotional expression value of the character, [0, 1].
     private var temperature: CGFloat = 0.5
+    // Speed
+    private var v: CGFloat = 100
+    // zRotation
+    private var z: CGFloat = 0
     
     init() {
         super.init(texture: nil, color: .clear, size: CGSize(width: 96, height: 96))
@@ -20,7 +24,7 @@ class Square: SKSpriteNode {
         rightEye = createEyeNode()
         mouth = createMouth()
         
-        self.lookRight()
+        self.lookLeft()
         
         self.addChild(squareBodyNode)
         self.addChild(squareStrokeNode)
@@ -99,9 +103,12 @@ class Square: SKSpriteNode {
     }
     
     func moveBy(x: CGFloat, y: CGFloat) {
-        // Emotions can affect speed.
-        // 0.5 -> 10,
-        let moveUpAction = SKAction.moveBy(x: x, y: y, duration: 0.1)
+        let moveUpAction = SKAction.moveBy(x: x * v * temperature, y: y * v * temperature, duration: 0.008)
+        self.run(moveUpAction)
+    }
+    
+    func move(to: CGPoint) {
+        let moveUpAction = SKAction.move(to: to, duration: 0.008)
         self.run(moveUpAction)
     }
     
@@ -122,10 +129,37 @@ class Square: SKSpriteNode {
         mouth.position = CGPoint(x: 24, y: -10)
     }
     
+    func incrV(value: CGFloat) {
+        if (v + value <= 100) {
+            v+=value
+        } else {
+            v = 100
+        }
+    }
+    
+    func decrV(value: CGFloat) {
+        if (v - value > 0) {
+            v -= value
+        } else {
+            v = 0
+        }
+    }
+    
+    func updateZ(angle value: CGFloat) {
+        self.zRotation = value
+        z = value
+    }
+    
     func update() {
         self.mouth?.removeFromParent()
         let newMouth = createMouth()
         self.addChild(newMouth)
         self.mouth = newMouth
+        
+        if abs(z).truncatingRemainder(dividingBy: 2 * .pi) > .pi / 2 {
+            self.lookLeft()
+        } else {
+            self.lookRight()
+        }
     }
 }
