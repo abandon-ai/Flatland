@@ -15,7 +15,7 @@
 		176B30842B4D01C400A8B8E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176B30822B4D01C400A8B8E5 /* Main.storyboard */; };
 		176B30862B4D01C700A8B8E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176B30852B4D01C700A8B8E5 /* Assets.xcassets */; };
 		176B30892B4D01C700A8B8E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176B30872B4D01C700A8B8E5 /* LaunchScreen.storyboard */; };
-		177878D02B53C0EB00F289F4 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878CF2B53C0EB00F289F4 /* Background.swift */; };
+		177878D02B53C0EB00F289F4 /* NaturalLightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878CF2B53C0EB00F289F4 /* NaturalLightNode.swift */; };
 		177878D22B53C17F00F289F4 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878D12B53C17F00F289F4 /* Square.swift */; };
 		177878D92B53C2EC00F289F4 /* CreateGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878D82B53C2EC00F289F4 /* CreateGradientLayer.swift */; };
 		177878DB2B53C30700F289F4 /* CreateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878DA2B53C30700F289F4 /* CreateImage.swift */; };
@@ -34,7 +34,7 @@
 		176B30832B4D01C400A8B8E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		176B30852B4D01C700A8B8E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176B30882B4D01C700A8B8E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		177878CF2B53C0EB00F289F4 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		177878CF2B53C0EB00F289F4 /* NaturalLightNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaturalLightNode.swift; sourceTree = "<group>"; };
 		177878D12B53C17F00F289F4 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 		177878D82B53C2EC00F289F4 /* CreateGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGradientLayer.swift; sourceTree = "<group>"; };
 		177878DA2B53C30700F289F4 /* CreateImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImage.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		177878DE2B53C36500F289F4 /* GameEntities */ = {
 			isa = PBXGroup;
 			children = (
-				177878CF2B53C0EB00F289F4 /* Background.swift */,
+				177878CF2B53C0EB00F289F4 /* NaturalLightNode.swift */,
 				177878D12B53C17F00F289F4 /* Square.swift */,
 			);
 			name = GameEntities;
@@ -205,7 +205,7 @@
 				176B30812B4D01C400A8B8E5 /* GameViewController.swift in Sources */,
 				176B30792B4D01C400A8B8E5 /* AppDelegate.swift in Sources */,
 				177878DD2B53C32800F289F4 /* CreateBloomStrokeNode.swift in Sources */,
-				177878D02B53C0EB00F289F4 /* Background.swift in Sources */,
+				177878D02B53C0EB00F289F4 /* NaturalLightNode.swift in Sources */,
 				177878DB2B53C30700F289F4 /* CreateImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

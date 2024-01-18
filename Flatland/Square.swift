@@ -102,47 +102,16 @@ class Square: SKSpriteNode {
         return effectNode
     }
     
-    func moveBy(x: CGFloat, y: CGFloat) {
-        let moveUpAction = SKAction.moveBy(x: x * v * temperature, y: y * v * temperature, duration: 0.008)
-        self.run(moveUpAction)
-    }
-    
-    func move(to: CGPoint) {
-        let moveUpAction = SKAction.move(to: to, duration: 0.008)
-        self.run(moveUpAction)
-    }
-    
-    func rotate(clockwise: Bool, angle: CGFloat) {
-        let rotateAction = SKAction.rotate(byAngle: clockwise ? -angle : angle, duration: 0.1)
-        self.run(rotateAction)
-    }
-    
-    func lookRight() {
+    private func lookRight() {
         leftEye.position = CGPoint(x: -16, y: 16)
         rightEye.position = CGPoint(x: 64, y: 20)
         mouth.position = CGPoint(x: 24, y: 10)
     }
     
-    func lookLeft() {
+    private func lookLeft() {
         leftEye.position = CGPoint(x: -16, y: -16)
         rightEye.position = CGPoint(x: 64, y: -20)
         mouth.position = CGPoint(x: 24, y: -10)
-    }
-    
-    func incrV(value: CGFloat) {
-        if (v + value <= 100) {
-            v+=value
-        } else {
-            v = 100
-        }
-    }
-    
-    func decrV(value: CGFloat) {
-        if (v - value > 0) {
-            v -= value
-        } else {
-            v = 0
-        }
     }
     
     func updateZ(angle value: CGFloat) {

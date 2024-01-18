@@ -2,37 +2,61 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    var squareNode = Square()
-    private var circleNode: SKSpriteNode!
+    var square = Square()
+    private var circle: SKSpriteNode!
     private var gamePad: GamePad?
+    private var maskNode: SKSpriteNode?
+    private var brightness: CGFloat = 0.5
     
     override func didMove(to view: SKView) {
         configureGamePad()
         
-        let backgroundNode = Background(size: self.size)
-        self.addChild(backgroundNode)
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.01)
         
-        squareNode.name = "Angle"
-        self.addChild(squareNode)
+        let naturalLight = NaturalLightNode(size: self.size)
+        naturalLight.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        naturalLight.physicsBody?.friction = 1
+        naturalLight.physicsBody?.restitution = 0
+        
+        self.addChild(naturalLight)
+        
+        let mask = SKSpriteNode(color: .black, size: size)
+        mask.alpha = brightness
+        mask.zPosition = 0
+        
+        addChild(mask)
+        
+        square.name = "Angle"
+        square.physicsBody = SKPhysicsBody(rectangleOf: square.size)
+        square.physicsBody?.friction = 1
+        square.physicsBody?.allowsRotation = true
+        square.physicsBody?.isDynamic = true
+        square.physicsBody?.restitution = 0.5
+        self.addChild(square)
         
         let circleStrokeNode = CreateBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 48, bloomIntensity: 2.0, bloomRadius: 10)
-        circleNode = SKSpriteNode()
-        circleNode.addChild(circleStrokeNode)
-        circleNode.run(SKAction.sequence([
+        circle = SKSpriteNode()
+        circle.addChild(circleStrokeNode)
+        circle.run(SKAction.sequence([
             SKAction.wait(forDuration: 0.5),
             SKAction.fadeOut(withDuration: 0.5),
             SKAction.removeFromParent()
         ]))
     }
     
+    func adjustBrightness(brightness: CGFloat) {
+        let clampedBrightness = max(0.0, min(1.0, brightness))
+        maskNode!.alpha = 1.0 - clampedBrightness
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            if let n = self.circleNode?.copy() as! SKSpriteNode? {
+            if let n = self.circle?.copy() as! SKSpriteNode? {
                 n.position = location
                 self.addChild(n)
             }
-            if squareNode.contains(location) {
+            if square.contains(location) {
                 let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
                     feedbackGenerator.prepare()
                     feedbackGenerator.impactOccurred()
@@ -43,7 +67,7 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            if let n = self.circleNode?.copy() as! SKSpriteNode? {
+            if let n = self.circle?.copy() as! SKSpriteNode? {
                 n.position = location
                 self.addChild(n)
             }
@@ -54,7 +78,7 @@ class GameScene: SKScene {
 
         for touch in touches {
             let location = touch.location(in: self)
-            if let n = self.circleNode?.copy() as! SKSpriteNode? {
+            if let n = self.circle?.copy() as! SKSpriteNode? {
                 n.position = location
                 self.addChild(n)
             }
@@ -64,7 +88,7 @@ class GameScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            if let n = self.circleNode?.copy() as! SKSpriteNode? {
+            if let n = self.circle?.copy() as! SKSpriteNode? {
                 n.position = location
                 self.addChild(n)
             }
@@ -86,39 +110,44 @@ class GameScene: SKScene {
 //        gamePad?.dpadDownPressed = { [weak self] in
 //        }
         
-        gamePad?.leftShoulderPressed = { [weak self] in
-            self?.squareNode.rotate(clockwise: false, angle: 90 * .pi / 180)
-        }
-        
-        gamePad?.rightShoulderPressed = { [weak self] in
-            self?.squareNode.rotate(clockwise: true, angle: 90 * .pi / 180)
-        }
+//        gamePad?.leftShoulderPressed = { [weak self] in
+//
+//        }
+//
+//        gamePad?.rightShoulderPressed = { [weak self] in
+//            
+//        }
         
         gamePad?.rightThumbstickMoved = { [weak self] xValue, yValue in
             if xValue == 0 && yValue == 0 {
-                self?.squareNode.updateZ(angle: 0)
+                self?.square.updateZ(angle: 0)
             } else {
                 let angle = atan2(CGFloat(yValue), CGFloat(xValue))
-                self?.squareNode.updateZ(angle: angle)
+                self?.square.updateZ(angle: angle)
             }
         }
         
         gamePad?.leftThumbstickMoved = { [weak self] xValue, yValue in
-            // TODO
+            if xValue == 0 && yValue == 0 {
+                self?.square.updateZ(angle: 0)
+            } else {
+                let angle = atan2(CGFloat(yValue), CGFloat(xValue))
+                self?.square.updateZ(angle: angle)
+            }
         }
         
         gamePad?.leftTriggerPressed =  { [weak self] value in
-            self?.squareNode.incrV(value: value)
+            
         }
         
         gamePad?.rightTriggerPressed =  { [weak self] value in
-            self?.squareNode.decrV(value: value)
+            
         }
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        self.squareNode.update()
+        self.square.update()
     }
 }
 
