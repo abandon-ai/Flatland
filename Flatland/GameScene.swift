@@ -4,7 +4,6 @@ import CoreMotion
 
 class GameScene: SKScene {
     var square = Square()
-    private var circle: SKSpriteNode!
     private var gamePad: GamePad?
     private let motionManager = CMMotionManager()
     var cameraNode: SKCameraNode!
@@ -43,61 +42,72 @@ class GameScene: SKScene {
         square.physicsBody?.isDynamic = true
         square.physicsBody?.restitution = 0.5
         self.addChild(square)
-        
-        let circleStrokeNode = CreateBloomStrokeNode(size: CGSize(width: 64, height: 64), lineWidth: 4, radius: 32, bloomIntensity: 2.0, bloomRadius: 10)
-        circle = SKSpriteNode()
-        circle.addChild(circleStrokeNode)
-        circle.run(SKAction.sequence([
-            SKAction.wait(forDuration: 0.5),
-            SKAction.fadeOut(withDuration: 0.5),
-            SKAction.removeFromParent()
-        ]))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            if let n = self.circle?.copy() as! SKSpriteNode? {
-                n.position = location
-                self.addChild(n)
-            }
-            if square.contains(location) {
-                let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
-                    feedbackGenerator.prepare()
-                    feedbackGenerator.impactOccurred()
-            }
+            let strokeParticle = createStrokeParticleNode()
+            strokeParticle.position = location
+            self.addChild(strokeParticle)
         }
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            if let n = self.circle?.copy() as! SKSpriteNode? {
-                n.position = location
-                self.addChild(n)
-            }
+            let strokeParticle = createStrokeParticleNode()
+            strokeParticle.position = location
+            self.addChild(strokeParticle)
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
         for touch in touches {
             let location = touch.location(in: self)
-            if let n = self.circle?.copy() as! SKSpriteNode? {
-                n.position = location
-                self.addChild(n)
-            }
+            let strokeParticle = createStrokeParticleNode()
+            strokeParticle.position = location
+            self.addChild(strokeParticle)
         }
+    }
+    
+    func createStrokeParticleNode() -> SKEmitterNode {
+        let particle = SKEmitterNode()
+        particle.particleColor = UIColor.white
+        particle.particleSize = CGSize(width: 4, height: 4) // 粒子的大小
+        particle.particleBirthRate = 50
+        particle.particleLifetime = 1.5
+        particle.particleSpeed = 40
+        particle.particleSpeedRange = 10
+        particle.emissionAngleRange = .pi * 2
+        particle.particleAlpha = 0.8
+        particle.particleAlphaRange = 0.2
+        particle.particleAlphaSpeed = -0.3
+        particle.particleScale = 0.5
+        particle.particleScaleRange = 0.2
+        particle.particleScaleSpeed = -0.1
+        particle.particleColorBlendFactor = 1
+        particle.particleColorBlendFactorRange = 0.2
+        particle.particleColorBlendFactorSpeed = -0.2
+        particle.particleBlendMode = .add
+
+        particle.particleColorSequence = SKKeyframeSequence(
+            keyframeValues: [UIColor.white, UIColor.gray, UIColor.lightGray],
+            times: [0, 0.5, 1]
+        )
+        
+        let removeAction = SKAction.sequence([
+            SKAction.wait(forDuration: 2.0),
+            SKAction.fadeOut(withDuration: 0.5),
+            SKAction.removeFromParent()
+        ])
+        particle.run(removeAction)
+
+        return particle
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            if let n = self.circle?.copy() as! SKSpriteNode? {
-                n.position = location
-                self.addChild(n)
-            }
-        }
+   
     }
     
     private func configureGamePad() {
