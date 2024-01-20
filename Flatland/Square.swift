@@ -13,12 +13,13 @@ class Square: SKSpriteNode {
     private var v: CGFloat = 100
     // zRotation
     private var z: CGFloat = 0
+    let width: CGFloat = 64.0
     
     init() {
-        super.init(texture: nil, color: .clear, size: CGSize(width: 96, height: 96))
+        super.init(texture: nil, color: .clear, size: CGSize(width: width, height: width))
         
-        let squareBodyNode = createSquareBodyNode(size: CGSize(width: 96, height: 96), blurRadius: 10, colors: ["#3D70E5", "#CEFEEC"])
-        let squareStrokeNode = CreateBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 0, bloomIntensity: 2.0, bloomRadius: 10.0)
+        let squareBodyNode = createSquareBodyNode(size: CGSize(width: width, height: width), blurRadius: 10, colors: ["#3D70E5", "#CEFEEC"])
+        let squareStrokeNode = CreateBloomStrokeNode(size: CGSize(width: width, height: width), lineWidth: 4, radius: 0, bloomIntensity: 2.0, bloomRadius: 10.0)
         
         leftEye = createEyeNode()
         rightEye = createEyeNode()
@@ -38,15 +39,15 @@ class Square: SKSpriteNode {
     }
     
     private func createEyeNode() -> SKShapeNode {
-        let eye = SKShapeNode(rectOf: CGSize(width: 16, height: 16), cornerRadius: 8)
+        let eye = SKShapeNode(rectOf: CGSize(width: width / 6, height: width / 6), cornerRadius: width / 3)
         eye.fillColor = SKColor.black
         eye.lineWidth = 0
         return eye
     }
     
     private func createMouth() -> SKShapeNode {
-        let mouthWidth: CGFloat = 16
-        let mouthHeight: CGFloat = 8
+        let mouthWidth: CGFloat = width / 6
+        let mouthHeight: CGFloat = width / 12
         
         let path = UIBezierPath()
         path.move(to: CGPoint(x: -1 * mouthWidth / 2, y: 0))
@@ -57,7 +58,7 @@ class Square: SKSpriteNode {
         
         let mouth = SKShapeNode(path: path.cgPath)
         mouth.fillColor = SKColor.clear
-        mouth.lineWidth = 4
+        mouth.lineWidth = width / 24
         mouth.strokeColor = SKColor.black
         
         return mouth
@@ -67,25 +68,9 @@ class Square: SKSpriteNode {
         let squareBodyNode = createSquareBodyNode(size: size, blurRadius: blurRadius, colors: colors)
         let squareStrokeNode = CreateBloomStrokeNode(size: size, lineWidth: 4, radius: 0, bloomIntensity: bloomIntensity, bloomRadius: bloomRadius)
         
-        let leftEye = SKShapeNode(rectOf: CGSize(width: 16, height: 16), cornerRadius: 16)
-        let rightEye = SKShapeNode(rectOf: CGSize(width: 16, height: 16), cornerRadius: 16)
-        let noce = SKShapeNode(rectOf: CGSize(width: 16, height: 4))
-        leftEye.fillColor = SKColor.black
-        leftEye.lineWidth = 0
-        noce.fillColor = SKColor.black
-        noce.lineWidth = 0
-        rightEye.fillColor = SKColor.black
-        rightEye.lineWidth = 0
-        leftEye.position = CGPoint(x: -16, y: 16)
-        rightEye.position = CGPoint(x: 64, y: 20)
-        noce.position = CGPoint(x: 24, y: 10)
-        
         let squareNode = SKSpriteNode()
         squareNode.addChild(squareBodyNode)
         squareNode.addChild(squareStrokeNode)
-        squareNode.addChild(leftEye)
-        squareNode.addChild(rightEye)
-        squareNode.addChild(noce)
         return squareNode
     }
     
@@ -103,15 +88,15 @@ class Square: SKSpriteNode {
     }
     
     private func lookRight() {
-        leftEye.position = CGPoint(x: -16, y: 16)
-        rightEye.position = CGPoint(x: 64, y: 20)
-        mouth.position = CGPoint(x: 24, y: 10)
+        leftEye.position = CGPoint(x: -width / 6, y: width / 6)
+        rightEye.position = CGPoint(x: width / 1.5, y: width / 6 + width / 24)
+        mouth.position = CGPoint(x: width / 4, y: width / 6 - width / 24)
     }
     
     private func lookLeft() {
-        leftEye.position = CGPoint(x: -16, y: -16)
-        rightEye.position = CGPoint(x: 64, y: -20)
-        mouth.position = CGPoint(x: 24, y: -10)
+        leftEye.position = CGPoint(x: -width / 6, y: -width / 6)
+        rightEye.position = CGPoint(x: width / 1.5, y: -width / 6 - width / 24)
+        mouth.position = CGPoint(x: width / 4, y: -width / 6 + width / 24)
     }
     
     func updateZ(angle value: CGFloat) {
