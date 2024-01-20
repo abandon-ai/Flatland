@@ -163,12 +163,28 @@ class GameScene: SKScene {
     func moveCamera() {
         let playerPositionInScene = convert(square.position, from: square.parent!)
         
-        let boundX = size.width / 2
-        let boundY = size.height / 2
-        let newX = max(-boundX, min(playerPositionInScene.x, boundX))
-        let newY = max(-boundY, min(playerPositionInScene.y, boundY))
+        let screenWidth = self.view?.bounds.width ?? 0
+        let screenHeight = self.view?.bounds.height ?? 0
+        
+        let leftEdge = cameraNode.position.x - screenWidth / 2
+        let rightEdge = cameraNode.position.x + screenWidth / 2
+        let topEdge = cameraNode.position.y + screenHeight / 2
+        let bottomEdge = cameraNode.position.y - screenHeight / 2
+        
+        var newCameraPosition = cameraNode.position
+        if playerPositionInScene.x < leftEdge {
+            newCameraPosition.x = square.position.x + screenWidth / 2
+        } else if playerPositionInScene.x > rightEdge {
+            newCameraPosition.x = square.position.x - screenWidth / 2
+        }
+        
+        if playerPositionInScene.y < bottomEdge {
+            newCameraPosition.y = square.position.y + screenHeight / 2
+        } else if playerPositionInScene.y > topEdge {
+            newCameraPosition.y = square.position.y - screenHeight / 2
+        }
 
-        cameraNode.position = CGPoint(x: newX, y: newY)
+        cameraNode.position = newCameraPosition
     }
     
     override func update(_ currentTime: TimeInterval) {
