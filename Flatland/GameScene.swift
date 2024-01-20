@@ -1,5 +1,6 @@
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 class GameScene: SKScene {
     var square = Square()
@@ -7,11 +8,24 @@ class GameScene: SKScene {
     private var gamePad: GamePad?
     private var maskNode: SKSpriteNode?
     private var brightness: CGFloat = 0.5
+    private let motionManager = CMMotionManager()
+    var cameraNode: SKCameraNode!
     
     override func didMove(to view: SKView) {
         configureGamePad()
         
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.01)
+        if motionManager.isAccelerometerAvailable {
+            motionManager.accelerometerUpdateInterval = 1.0 / 60.0
+            motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (accelerometerData, error) in
+                guard let accelerometerData = accelerometerData else { return }
+                let acceleration = accelerometerData.acceleration
+                self.physicsWorld.gravity = CGVector(dx: acceleration.x * 1, dy: acceleration.y * 1)
+            }
+        }
+        
+        cameraNode = SKCameraNode()
+        camera = cameraNode
+        addChild(cameraNode)
         
         let naturalLight = NaturalLightNode(size: self.size)
         naturalLight.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -136,18 +150,30 @@ class GameScene: SKScene {
             }
         }
         
-        gamePad?.leftTriggerPressed =  { [weak self] value in
-            
-        }
+//        gamePad?.leftTriggerPressed =  { [weak self] value in
+//            
+//        }
+//        
+//        gamePad?.rightTriggerPressed =  { [weak self] value in
+//            
+//        }
+    }
+    
+    func moveCamera() {
+        let playerPositionInScene = convert(square.position, from: square.parent!)
         
-        gamePad?.rightTriggerPressed =  { [weak self] value in
-            
-        }
+        let boundX = size.width / 2
+        let boundY = size.height / 2
+        let newX = max(-boundX, min(playerPositionInScene.x, boundX))
+        let newY = max(-boundY, min(playerPositionInScene.y, boundY))
+
+        cameraNode.position = CGPoint(x: newX, y: newY)
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         self.square.update()
+        self.moveCamera()
     }
 }
 

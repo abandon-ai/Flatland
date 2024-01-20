@@ -81,7 +81,6 @@
 				177878D52B53C2A500F289F4 /* Scenes */,
 				176B30782B4D01C400A8B8E5 /* AppDelegate.swift */,
 				176B307C2B4D01C400A8B8E5 /* Actions.sks */,
-				176B307A2B4D01C400A8B8E5 /* GameScene.sks */,
 				176B30802B4D01C400A8B8E5 /* GameViewController.swift */,
 				176B30822B4D01C400A8B8E5 /* Main.storyboard */,
 				176B30852B4D01C700A8B8E5 /* Assets.xcassets */,
@@ -93,6 +92,7 @@
 		177878D52B53C2A500F289F4 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				176B307A2B4D01C400A8B8E5 /* GameScene.sks */,
 				176B307E2B4D01C400A8B8E5 /* GameScene.swift */,
 			);
 			name = Scenes;
