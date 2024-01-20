@@ -21,7 +21,7 @@
 		177878DB2B53C30700F289F4 /* CreateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878DA2B53C30700F289F4 /* CreateImage.swift */; };
 		177878DD2B53C32800F289F4 /* CreateBloomStrokeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878DC2B53C32800F289F4 /* CreateBloomStrokeNode.swift */; };
 		177878E12B53CF6B00F289F4 /* GamePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177878E02B53CF6B00F289F4 /* GamePad.swift */; };
-		178F78592B5BB9A30061BC28 /* GridBackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178F78582B5BB9A30061BC28 /* GridBackgroundNode.swift */; };
+		178F78592B5BB9A30061BC28 /* DotGridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178F78582B5BB9A30061BC28 /* DotGridNode.swift */; };
 		17A9E7A82B4DA694000851B7 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A9E7A72B4DA694000851B7 /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +41,7 @@
 		177878DA2B53C30700F289F4 /* CreateImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImage.swift; sourceTree = "<group>"; };
 		177878DC2B53C32800F289F4 /* CreateBloomStrokeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBloomStrokeNode.swift; sourceTree = "<group>"; };
 		177878E02B53CF6B00F289F4 /* GamePad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePad.swift; sourceTree = "<group>"; };
-		178F78582B5BB9A30061BC28 /* GridBackgroundNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridBackgroundNode.swift; sourceTree = "<group>"; };
+		178F78582B5BB9A30061BC28 /* DotGridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotGridNode.swift; sourceTree = "<group>"; };
 		17A9E7A72B4DA694000851B7 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +114,7 @@
 			children = (
 				177878CF2B53C0EB00F289F4 /* NaturalLightNode.swift */,
 				177878D12B53C17F00F289F4 /* Square.swift */,
-				178F78582B5BB9A30061BC28 /* GridBackgroundNode.swift */,
+				178F78582B5BB9A30061BC28 /* DotGridNode.swift */,
 			);
 			name = GameEntities;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 				176B30812B4D01C400A8B8E5 /* GameViewController.swift in Sources */,
 				176B30792B4D01C400A8B8E5 /* AppDelegate.swift in Sources */,
 				177878DD2B53C32800F289F4 /* CreateBloomStrokeNode.swift in Sources */,
-				178F78592B5BB9A30061BC28 /* GridBackgroundNode.swift in Sources */,
+				178F78592B5BB9A30061BC28 /* DotGridNode.swift in Sources */,
 				177878D02B53C0EB00F289F4 /* NaturalLightNode.swift in Sources */,
 				177878DB2B53C30700F289F4 /* CreateImage.swift in Sources */,
 			);

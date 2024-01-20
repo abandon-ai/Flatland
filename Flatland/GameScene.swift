@@ -6,8 +6,6 @@ class GameScene: SKScene {
     var square = Square()
     private var circle: SKSpriteNode!
     private var gamePad: GamePad?
-    private var maskNode: SKSpriteNode?
-    private var brightness: CGFloat = 0.5
     private let motionManager = CMMotionManager()
     var cameraNode: SKCameraNode!
     
@@ -34,11 +32,9 @@ class GameScene: SKScene {
         
         self.addChild(naturalLight)
         
-        let mask = SKSpriteNode(color: .black, size: size)
-        mask.alpha = brightness
-        mask.zPosition = 0
-        
-        addChild(mask)
+        let dotGrid = DotGridNode(gridSize: CGSize(width: 1024, height: 1024), dotSize: 2.0, spacing: 50)
+        dotGrid.position = CGPoint(x: frame.midX - 512, y: frame.midY - 512)
+        addChild(dotGrid)
         
         square.name = "Angle"
         square.physicsBody = SKPhysicsBody(rectangleOf: square.size)
@@ -48,7 +44,7 @@ class GameScene: SKScene {
         square.physicsBody?.restitution = 0.5
         self.addChild(square)
         
-        let circleStrokeNode = CreateBloomStrokeNode(size: CGSize(width: 96, height: 96), lineWidth: 4, radius: 48, bloomIntensity: 2.0, bloomRadius: 10)
+        let circleStrokeNode = CreateBloomStrokeNode(size: CGSize(width: 64, height: 64), lineWidth: 4, radius: 32, bloomIntensity: 2.0, bloomRadius: 10)
         circle = SKSpriteNode()
         circle.addChild(circleStrokeNode)
         circle.run(SKAction.sequence([
@@ -56,11 +52,6 @@ class GameScene: SKScene {
             SKAction.fadeOut(withDuration: 0.5),
             SKAction.removeFromParent()
         ]))
-    }
-    
-    func adjustBrightness(brightness: CGFloat) {
-        let clampedBrightness = max(0.0, min(1.0, brightness))
-        maskNode!.alpha = 1.0 - clampedBrightness
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
